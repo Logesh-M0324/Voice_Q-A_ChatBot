@@ -1,0 +1,11 @@
+npm install 
+axios @tanstack/react-query 
+react-i18next 
+i18next 
+clsx 
+lucide-react
+
+# tailwind
+npm install -D tailwindcss@3 autoprefixer
+npx tailwindcss init -p
+
