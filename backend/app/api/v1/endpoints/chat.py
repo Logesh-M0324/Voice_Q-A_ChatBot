@@ -8,7 +8,7 @@ router = APIRouter()
 # Phase-1 session memory
 CONVERSATIONS = {}
 
-@router.post("/", response_model=ChatResponse)
+@router.post("", response_model=ChatResponse)
 def chat(payload: ChatRequest):
     transcript = TRANSCRIPTS.get(payload.conversation_id, "")
     history = "\n".join(CONVERSATIONS.get(payload.conversation_id, []))

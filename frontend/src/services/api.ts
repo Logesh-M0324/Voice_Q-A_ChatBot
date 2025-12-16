@@ -1,32 +1,34 @@
-// Phase-1 chat (original endpoint)
-export async function sendMessage(conversationId: string, message: string) {
-  const res = await fetch("http://localhost:8000/api/v1/chat/", {
+const BASE_URL = "http://127.0.0.1:8000/api/v1";
+
+export async function sendChatMessage(
+  conversation_id: string,
+  message: string
+) {
+  const res = await fetch(`${BASE_URL}/chat/rag`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ conversation_id: conversationId, message })
+    body: JSON.stringify({
+      conversation_id: conversation_id,
+      message: message,
+    }),
   });
+
   return res.json();
 }
 
-// Phase-2 RAG chat
-export async function sendMessageRAG(conversationId: string, message: string) {
-  const res = await fetch("http://localhost:8000/api/v1/chat/rag/", {
+export async function uploadAudio(file: File) {
+  const formData = new FormData();
+  formData.append("file", file);
+
+  const res = await fetch(`${BASE_URL}/createTask/tasks/create`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ conversation_id: conversationId, message })
+    body: formData,
   });
+
   return res.json();
 }
 
-// Upload transcript (automatically embeds in vector DB)
-export async function uploadTranscript(conversationId: string, text: string) {
-  const res = await fetch("http://localhost:8000/api/v1/ingest/upload", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ conversation_id: conversationId, text })
-  });
+export async function getTaskStatus(taskId: string) {
+  const res = await fetch(`${BASE_URL}/createTask/tasks/status/${taskId}`);
   return res.json();
 }
-
-
-

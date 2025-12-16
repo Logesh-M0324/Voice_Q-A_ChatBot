@@ -13,7 +13,7 @@ class ChatRAGRequest(BaseModel):
 class ChatRAGResponse(BaseModel):
     reply: str
 
-@router.post("/", response_model=ChatRAGResponse)
+@router.post("", response_model=ChatRAGResponse)
 def chat_rag(payload: ChatRAGRequest):
     # Load memory
     memory = get_memory(payload.conversation_id)
