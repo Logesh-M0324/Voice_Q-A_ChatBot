@@ -14,5 +14,6 @@ langchain
 chromadb 
 sentence-transformers 
 reportlab 
-whisper
 pandas
+faster-whisper
+python-multipart

@@ -3,3 +3,26 @@ testing.ipynb
 structure.txt
 myenv
 node_modules
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+myenv/
+.venv/
+env/
+
+# Environment variables
+.env
+
+# Chroma DB
+chromadb_persist/
+
+# Node
+node_modules/
+
+# OS
+.DS_Store
