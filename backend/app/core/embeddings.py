@@ -1,11 +1,10 @@
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from sentence_transformers import SentenceTransformer
 import chromadb
-from chromadb.config import Settings
 import uuid
 
 # Persistent Chroma client
-chroma_client = chromadb.PersistentClient(path="/backend/chromaVecDB")
+chroma_client = chromadb.PersistentClient(path="chromaVecDB")
 
 collection = chroma_client.get_or_create_collection("transcript_chunks")
 

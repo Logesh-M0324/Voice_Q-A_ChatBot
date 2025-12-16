@@ -15,4 +15,7 @@ def upload_transcript(payload: TranscriptUploadRequest):
     # Phase-2: chunk + embed + save in Chroma
     add_transcript_to_vector_db(payload.conversation_id, payload.text)
 
+    print("TRANSCRIPTS:")
+    print(TRANSCRIPTS)
+
     return {"status": "uploaded and embedded"}

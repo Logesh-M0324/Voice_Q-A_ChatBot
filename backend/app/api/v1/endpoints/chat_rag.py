@@ -18,7 +18,7 @@ def chat_rag(payload: ChatRAGRequest):
     # Load memory
     memory = get_memory(payload.conversation_id)
     history = "\n".join(
-        [f"{m.type}: {m.content}" for m in memory.chat_memory.messages]
+        [f"{m.type}: {m.content}" for m in memory.messages]
     )
 
     # RAG retrieval

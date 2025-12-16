@@ -18,5 +18,7 @@ def chat(payload: ChatRequest):
     CONVERSATIONS.setdefault(payload.conversation_id, [])
     CONVERSATIONS[payload.conversation_id].append(f"User: {payload.message}")
     CONVERSATIONS[payload.conversation_id].append(f"Assistant: {reply}")
+    print("Converstions:")
+    print(CONVERSATIONS)
 
     return {"reply": reply}
