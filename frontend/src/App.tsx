@@ -12,12 +12,9 @@ export default function App() {
   }
 
   return (
-    <>
-      <center>
-        <ChatWindow />
-        <VoiceRecorder />
-      </center>
-    </>
+    <center>
+      <ChatWindow />
+      <VoiceRecorder />
+    </center>
   );
 }
-

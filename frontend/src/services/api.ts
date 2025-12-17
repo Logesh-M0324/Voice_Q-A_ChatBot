@@ -31,9 +31,10 @@ export async function sendChatMessage(
   return res.json();
 }
 
-export async function uploadAudio(file: File) {
+export async function uploadAudio(file: File, conversation_id: string) {
   const formData = new FormData();
   formData.append("file", file);
+  formData.append("conversation_id", conversation_id);
 
   const res = await fetch(`${BASE_URL}/createTask/tasks/create`, {
     method: "POST",
