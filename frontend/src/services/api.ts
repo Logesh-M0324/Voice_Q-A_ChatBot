@@ -41,9 +41,11 @@ export async function uploadAudio(file: File) {
   });
 
   return res.json();
-}
+} 
 
 export async function getTaskStatus(taskId: string) {
-  const res = await fetch(`${BASE_URL}/createTask/tasks/status/${taskId}`);
+  const res = await fetch(
+    `${BASE_URL}/tasks/status/${taskId}`
+  );
   return res.json();
 }
