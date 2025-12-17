@@ -4,6 +4,7 @@ import { sendChatMessage } from "../../services/api";
 export default function ChatWindow() {
   const [messages, setMessages] = useState<string[]>([]);
   const [input, setInput] = useState("");
+
   const sessionId = "default-session";
 
   const handleSend = async () => {
@@ -12,6 +13,7 @@ export default function ChatWindow() {
     setMessages((prev) => [...prev, "You: " + input]);
 
     const res = await sendChatMessage(sessionId, input);
+
     setMessages((prev) => [...prev, "Bot: " + res.reply]);
 
     setInput("");
@@ -27,6 +29,7 @@ export default function ChatWindow() {
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />
+
       <button onClick={handleSend}>Send</button>
     </div>
   );

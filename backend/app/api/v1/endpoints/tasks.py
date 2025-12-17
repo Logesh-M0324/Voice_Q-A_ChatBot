@@ -21,7 +21,3 @@ async def create_task(
     background_tasks.add_task(run_task, task_id, audio_path)
 
     return {"task_id": task_id}
-
-@router.get("/tasks/status/{task_id}")
-def get_status(task_id: str):
-    return redis_client.hgetall(task_id)

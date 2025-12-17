@@ -1,17 +1,32 @@
 const BASE_URL = "http://127.0.0.1:8000/api/v1";
+import { getApiKey } from "../utils/apiKey";
+
 
 export async function sendChatMessage(
-  conversation_id: string,
+  conversation_Id: string,
   message: string
 ) {
+  const apiKey = getApiKey();
+
+  if (!apiKey) {
+    throw new Error("API key missing. Please set API key.");
+  }
+
+  console.log(apiKey)
+
   const res = await fetch(`${BASE_URL}/chat/rag`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${apiKey}`, // ✅ DEFAULT API KEY USED HERE or "x-api-key": apiKey
+    },
     body: JSON.stringify({
-      conversation_id: conversation_id,
-      message: message,
+      conversation_id: conversation_Id,
+      message:message,
     }),
   });
+
+  console.log(res)
 
   return res.json();
 }

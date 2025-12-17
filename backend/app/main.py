@@ -3,8 +3,12 @@ from app.api.v1.endpoints import ingest, chat, chat_rag
 from app.api.v1.endpoints import memory
 from app.api.v1.endpoints import tasks
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.security import HTTPBearer
 
 app = FastAPI(title="Transcript Chatbot")
+
+# used to load the header authorization
+security = HTTPBearer() 
 
 # ✅ CORS MUST COME FIRST (before include_router)
 app.add_middleware(

@@ -1,23 +1,23 @@
-import './index.css'
+import { useState } from "react";
 import ChatWindow from "./components/ChatWindow/ChatWindow";
 import VoiceRecorder from "./components/VoiceRecorder/VoiceRecorder";
+import ApiKeyModal from "./components/ApiKeyModal/ApiKeyModal";
+import { getApiKey } from "./utils/apiKey";
 
-function App() {
+export default function App() {
+  const [hasKey, setHasKey] = useState(!!getApiKey());
+
+  if (!hasKey) {
+    return <ApiKeyModal onSaved={() => setHasKey(true)} />;
+  }
+
   return (
-    <center>
-      <div>
-        <h2>EchoRAG Demo</h2>
-
-        <h3>Chat</h3>
+    <>
+      <center>
         <ChatWindow />
-
-        <hr />
-
-        <h3>Voice to PDF</h3>
         <VoiceRecorder />
-      </div>
-    </center>
+      </center>
+    </>
   );
 }
 
-export default App;
