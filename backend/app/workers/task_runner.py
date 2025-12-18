@@ -15,22 +15,23 @@ def run_task(task_id: str, audio_path: str, conversation_id: str):
         # 1️⃣ Transcribe audio
         redis_client.hset(task_id, mapping={
             "status": "transcribing",
-            "progress": 30
+            "progress": 20
         })
         transcript = transcribe_audio(audio_path)
 
         # 2️⃣ Add transcript to vector DB
         redis_client.hset(task_id, mapping={
             "status": "embedding",
-            "progress": 60
+            "progress": 50
         })
         add_transcript_to_vector_db(conversation_id, transcript)
 
         # 3️⃣ Generate PDF from transcript
         redis_client.hset(task_id, mapping={
             "status": "generating_pdf",
-            "progress": 85
+            "progress": 80
         })
+        
         pdf_path = f"outputs/{task_id}.pdf"
         generate_pdf(transcript, pdf_path)
 

@@ -6,6 +6,7 @@ from app.api.v1.endpoints import tasks_status
 from app.api.v1.endpoints import stream_chat
 from app.api.v1.endpoints import cleanup, health
 from app.api.v1.endpoints import downloadPdf
+from app.api.v1.endpoints import task_stream
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import HTTPBearer
 import os
@@ -37,7 +38,7 @@ app.include_router(cleanup.router, prefix="/api/v1")
 app.include_router(health.router, prefix="/api/v1")
 app.include_router(stream_chat.router, prefix="/api/v1")
 app.include_router(downloadPdf.router, prefix="/api/v1/download", tags=["download"])
-
+app.include_router(task_stream.router, prefix="/api/v1", tags=["task_stream"])
 
 @app.get("/")
 def health():
